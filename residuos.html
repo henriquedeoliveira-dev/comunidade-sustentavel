@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descarte de Resíduos - Comunidade Sustentável</title>
+    <title>Descarte de Resíduos e Desafio - Comunidade Sustentável</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Gradiente da Hero conforme seu estilo */
+        .bg-hero {
+            background: linear-gradient(135deg, #065f46 0%, #0891b2 100%);
+        }
+        
+        /* Estilos do Jogo */
+        .item-card { cursor: pointer; transition: all 0.2s; }
+        .item-card:hover { transform: translateY(-3px); }
+        
+        /* Efeito de item selecionado para o clique */
+        .item-selecionado {
+            border-color: #f59e0b !important; /* border-amber-500 */
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .bin-target { cursor: pointer; transition: all 0.2s; }
+        .bin-target:hover { transform: scale(1.02); filter: brightness(1.1); }
+        
+        .bg-game { background: #0f172a; }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -20,7 +44,7 @@
         </div>
     </section>
 
-    <main class="container mx-auto px-6 -mt-10 relative z-20 pb-20">
+    <main class="container mx-auto px-6 -mt-10 relative z-20 pb-10">
         <div class="bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-gray-100 max-w-4xl mx-auto">
             
             <p class="text-2xl md:text-3xl text-gray-700 leading-relaxed font-light italic border-l-4 border-cyan-500 pl-6">
@@ -28,7 +52,6 @@
             </p>
 
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-                
                 <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
                     <span class="text-3xl mb-2 block">🧴</span>
                     <h4 class="font-bold text-red-800 uppercase text-xs tracking-widest mb-2">Rastro Invisível</h4>
@@ -50,132 +73,142 @@
                     <li><strong>Eletrônicos: </strong> Para itens perigosos como pilhas, baterias e eletrônicos, nunca use o lixo comum. Leve-os a pontos de coleta específicos em supermercados ou farmácias. Uma única pilha vazada pode contaminar o solo por décadas, atingindo o lençol freático que abastece sua região.</li>
                 </ul>
             </div>
-
-            <div class="mt-12 flex justify-center">
-                <button class="bg-cyan-600 text-white px-8 py-3 rounded-full font-bold hover:bg-cyan-700 transition-all shadow-lg">
-                    Ir para simulador de desperdício →
-                </button>
-            </div>
-
         </div>
     </main>
 
-    <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio do Descarte - Comunidade Sustentável</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <style>
-        .bin-target { min-height: 120px; transition: all 0.3s; }
-        .bin-target.drag-over { transform: scale(1.05); filter: brightness(1.2); }
-        .item-card { cursor: grab; touch-action: none; }
-        .item-card:active { cursor: grabbing; }
-        .bg-game { background: #0f172a; }
-    </style>
-</head>
-<body class="bg-game text-slate-200 font-sans min-h-screen p-4">
+    <section class="bg-game text-slate-200 p-6 pb-20">
+        <div class="max-w-5xl mx-auto py-10">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-black text-emerald-400 mb-2">Desafio do Rastro 🌍</h1>
+                <p class="text-slate-400 italic">Clique em um resíduo abaixo e depois clique na lixeira para onde quer descartá-lo!</p>
+                
+                <div class="inline-block mt-6 bg-slate-800 border-2 border-emerald-500 rounded-3xl px-8 py-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+                    <p class="text-xs uppercase font-bold tracking-widest text-emerald-500">Seu Lixo Viverá na Terra por:</p>
+                    <p class="text-5xl font-black"><span id="totalAnos">0</span> <span class="text-xl">Anos</span></p>
+                </div>
+            </div>
 
-    <main class="max-w-5xl mx-auto py-10">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-black text-emerald-400 mb-2">Desafio do Rastro 🌍</h1>
-            <p class="text-slate-400 italic">Arraste os resíduos para a lixeira correta. Cuidado com a contaminação!</p>
-            
-            <div class="inline-block mt-6 bg-slate-800 border-2 border-emerald-500 rounded-3xl px-8 py-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-                <p class="text-xs uppercase font-bold tracking-widest text-emerald-500">Seu Lixo Viverá na Terra por:</p>
-                <p class="text-5xl font-black"><span id="totalAnos">0</span> <span class="text-xl">Anos</span></p>
+            <div id="itemSource" class="bg-slate-800/50 p-6 rounded-3xl border-2 border-dashed border-slate-700 mb-12 flex flex-wrap justify-center gap-4 min-h-[120px]">
+                </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div id="PAPEL" onclick="tentarDescarte('PAPEL')" class="bin-target bg-blue-600/20 border-2 border-blue-500 rounded-2xl p-4 flex flex-col items-center">
+                    <span class="text-3xl mb-2">📄</span>
+                    <p class="text-[10px] font-bold uppercase text-blue-400">Papel</p>
+                    <div class="drop-area w-full mt-2 flex flex-wrap justify-center gap-2"></div>
+                </div>
+
+                <div id="PLASTICO" onclick="tentarDescarte('PLASTICO')" class="bin-target bg-red-600/20 border-2 border-red-500 rounded-2xl p-4 flex flex-col items-center">
+                    <span class="text-3xl mb-2">🥤</span>
+                    <p class="text-[10px] font-bold uppercase text-red-400">Plástico</p>
+                    <div class="drop-area w-full mt-2 flex flex-wrap justify-center gap-2"></div>
+                </div>
+
+                <div id="VIDRO" onclick="tentarDescarte('VIDRO')" class="bin-target bg-green-600/20 border-2 border-green-500 rounded-2xl p-4 flex flex-col items-center">
+                    <span class="text-3xl mb-2">🍾</span>
+                    <p class="text-[10px] font-bold uppercase text-green-400">Vidro</p>
+                    <div class="drop-area w-full mt-2 flex flex-wrap justify-center gap-2"></div>
+                </div>
+
+                <div id="METAL" onclick="tentarDescarte('METAL')" class="bin-target bg-yellow-600/20 border-2 border-yellow-500 rounded-2xl p-4 flex flex-col items-center">
+                    <span class="text-3xl mb-2">🥫</span>
+                    <p class="text-[10px] font-bold uppercase text-yellow-400">Metal</p>
+                    <div class="drop-area w-full mt-2 flex flex-wrap justify-center gap-2"></div>
+                </div>
+
+                <div id="ORGANICO" onclick="tentarDescarte('ORGANICO')" class="bin-target bg-orange-900/20 border-2 border-orange-700 rounded-2xl p-4 flex flex-col items-center">
+                    <span class="text-3xl mb-2">🍎</span>
+                    <p class="text-[10px] font-bold uppercase text-orange-500">Orgânico</p>
+                    <div class="drop-area w-full mt-2 flex flex-wrap justify-center gap-2"></div>
+                </div>
             </div>
         </div>
-
-        <div id="itemSource" class="bg-slate-800/50 p-6 rounded-3xl border-2 border-dashed border-slate-700 mb-12 flex flex-wrap justify-center gap-4">
-            </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <div id="PAPEL" class="bin-target bg-blue-600/20 border-2 border-blue-500 rounded-2xl p-4 flex flex-col items-center">
-                <span class="text-3xl mb-2">📄</span>
-                <p class="text-[10px] font-bold uppercase text-blue-400">Papel</p>
-                <div class="drop-area w-full mt-2 h-full"></div>
-            </div>
-
-            <div id="PLASTICO" class="bin-target bg-red-600/20 border-2 border-red-500 rounded-2xl p-4 flex flex-col items-center">
-                <span class="text-3xl mb-2">🥤</span>
-                <p class="text-[10px] font-bold uppercase text-red-400">Plástico</p>
-                <div class="drop-area w-full mt-2 h-full"></div>
-            </div>
-
-            <div id="VIDRO" class="bin-target bg-green-600/20 border-2 border-green-500 rounded-2xl p-4 flex flex-col items-center">
-                <span class="text-3xl mb-2">🍾</span>
-                <p class="text-[10px] font-bold uppercase text-green-400">Vidro</p>
-                <div class="drop-area w-full mt-2 h-full"></div>
-            </div>
-
-            <div id="METAL" class="bin-target bg-yellow-600/20 border-2 border-yellow-500 rounded-2xl p-4 flex flex-col items-center">
-                <span class="text-3xl mb-2">🥫</span>
-                <p class="text-[10px] font-bold uppercase text-yellow-400">Metal</p>
-                <div class="drop-area w-full mt-2 h-full"></div>
-            </div>
-
-            <div id="ORGANICO" class="bin-target bg-orange-900/20 border-2 border-orange-700 rounded-2xl p-4 flex flex-col items-center">
-                <span class="text-3xl mb-2">🍎</span>
-                <p class="text-[10px] font-bold uppercase text-orange-500">Orgânico</p>
-                <div class="drop-area w-full mt-2 h-full"></div>
-            </div>
-        </div>
-    </main>
+    </section>
 
     <script>
-        // Banco de Dados dos Itens
         const itens = [
-            { nome: 'Garrafa PET', emoji: '🧴', correta: 'PLASTICO', anos: 450, obs: 'Isso dura séculos!' },
-            { nome: 'Caixa Pizza Suja', emoji: '🍕', correta: 'ORGANICO', anos: 100, obs: 'A gordura impediria a reciclagem do papel!' }, // A PEGADINHA
-            { nome: 'Lata de Refri', emoji: '🥤', correta: 'METAL', anos: 200, obs: 'O alumínio é infinitamente reciclável.' },
-            { nome: 'Jornal Velho', emoji: '📰', correta: 'PAPEL', anos: 0.5, obs: 'Papel seco é ouro na reciclagem.' },
-            { nome: 'Casca Banana', emoji: '🍌', correta: 'ORGANICO', anos: 0.1, obs: 'Isso vira adubo rápido.' },
-            { nome: 'Garrafa Vidro', emoji: '🍾', correta: 'VIDRO', anos: 4000, obs: '4 mil anos no solo!' },
-            { nome: 'Pote Iogurte Sujo', emoji: '🍧', correta: 'ORGANICO', anos: 450, obs: 'Sujo de orgânico? Vira lixo comum.' } // OUTRA PEGADINHA
+            { nome: 'Garrafa PET', emoji: '🧴', correta: 'PLASTICO', anos: 450 },
+            { nome: 'Caixa Pizza Suja', emoji: '🍕', correta: 'ORGANICO', anos: 100 },
+            { nome: 'Lata de Refri', emoji: '🥤', correta: 'METAL', anos: 200 },
+            { nome: 'Jornal Velho', emoji: '📰', correta: 'PAPEL', anos: 0.5 },
+            { nome: 'Casca Banana', emoji: '🍌', correta: 'ORGANICO', anos: 0.1 },
+            { nome: 'Garrafa Vidro', emoji: '🍾', correta: 'VIDRO', anos: 4000 },
+            { nome: 'Pote Iogurte Sujo', emoji: '🍧', correta: 'ORGANICO', anos: 450 }
         ];
 
         let anosTotais = 0;
+        let itemSelecionado = null;
         const source = document.getElementById('itemSource');
 
         // Criar os cards na tela
         itens.forEach((item, index) => {
             const card = document.createElement('div');
-            card.className = "item-card bg-slate-700 p-4 rounded-xl shadow-md border border-slate-600 flex flex-col items-center min-w-[100px]";
+            card.className = "item-card bg-slate-700 p-3 rounded-xl shadow-md border border-slate-600 flex flex-col items-center min-w-[90px]";
             card.dataset.correta = item.correta;
             card.dataset.anos = item.anos;
-            card.innerHTML = `<span class="text-3xl">${item.emoji}</span><p class="text-[10px] mt-2 font-bold">${item.nome}</p>`;
+            card.id = `item-${index}`;
+            card.innerHTML = `<span class="text-2xl">${item.emoji}</span><p class="text-[10px] mt-1 font-bold">${item.nome}</p>`;
+            
+            // Evento de clique para selecionar o item
+            card.onclick = function(e) {
+                e.stopPropagation(); // Evita bugar outros cliques
+                selecionarItem(this);
+            };
+            
             source.appendChild(card);
         });
 
-        // Configurar o Sortable para cada container
-        [source, ...document.querySelectorAll('.drop-area')].forEach(el => {
-            new Sortable(el, {
-                group: 'game',
-                animation: 150,
-                onAdd: function (evt) {
-                    const item = evt.item;
-                    const containerId = evt.to.parentElement.id;
-                    const correta = item.dataset.correta;
-                    const anosPoluicao = parseFloat(item.dataset.anos);
+        function selecionarItem(card) {
+            // Se clicar no mesmo item, desmarca ele
+            if (itemSelecionado === card) {
+                card.classList.remove('item-selecionado');
+                itemSelecionado = null;
+                return;
+            }
+            
+            // Remove a seleção de qualquer outro item que estava marcado
+            const jaSelecionado = document.querySelector('.item-selecionado');
+            if (jaSelecionado) jaSelecionado.classList.remove('item-selecionado');
+            
+            // Seleciona o novo item
+            card.classList.add('item-selecionado');
+            itemSelecionado = card;
+        }
 
-                    if (containerId !== correta) {
-                        // Se errou a lixeira, o rastro de anos é adicionado
-                        anosTotais += anosPoluicao;
-                        item.classList.add('border-red-500', 'bg-red-900/30');
-                        alert(`ERROU! ❌\nEsse item viverá por ${anosPoluicao} anos na natureza porque você o descartou no lugar errado.`);
-                    } else {
-                        // Se acertou, o rastro é zero
-                        item.classList.add('border-emerald-500', 'bg-emerald-900/30');
-                    }
-                    
-                    document.getElementById('totalAnos').innerText = anosTotais.toFixed(0);
-                    item.style.pointerEvents = 'none'; // Trava o item depois de soltar
-                }
-            });
-        });
+        function tentarDescarte(lixeiraId) {
+            // Se o usuário não selecionou nenhum item e clicou na lixeira, avisa ele
+            if (!itemSelecionado) {
+                alert('Primeiro, clique em um dos resíduos lá em cima para selecioná-lo!');
+                return;
+            }
+            
+            const correta = itemSelecionado.dataset.correta;
+            const anosPoluicao = parseFloat(itemSelecionado.dataset.anos);
+            const dropArea = document.querySelector(`#${lixeiraId} .drop-area`);
+            
+            // Move o item visualmente para a lixeira
+            itemSelecionado.classList.remove('item-selecionado');
+            dropArea.appendChild(itemSelecionado);
+            
+            // Bloqueia novos cliques nesse item para ele não ser movido de novo
+            itemSelecionado.onclick = null;
+            itemSelecionado.style.cursor = 'default';
+
+            // Validação de erro ou acerto
+            if (lixeiraId !== correta) {
+                anosTotais += anosPoluicao;
+                itemSelecionado.classList.add('border-red-500', 'bg-red-900/30');
+                alert(`ERROU! ❌\nEsse item viverá por ${anosPoluicao} anos na natureza porque você o descartou no lugar errado.`);
+            } else {
+                itemSelecionado.classList.add('border-emerald-500', 'bg-emerald-900/30');
+            }
+            
+            // Atualiza o contador de anos na tela
+            document.getElementById('totalAnos').innerText = anosTotais.toFixed(1);
+            
+            // Reseta a variável de controle
+            itemSelecionado = null;
+        }
     </script>
 </body>
 </html>
