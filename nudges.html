@@ -111,12 +111,49 @@
         }
 
         function finalizar() {
-            const ativos = document.querySelectorAll('.is-selected').length;
-            if(ativos > 0) {
-                alert('Incrível! Você assumiu ' + ativos + ' compromissos sustentáveis hoje! 🌱');
-            } else {
+            // 1. Pega todos os cards que estão selecionados
+            const cardsSelecionados = document.querySelectorAll('.is-selected');
+            const totalAtivos = cardsSelecionados.length;
+            
+            // 2. Valida se o usuário escolheu pelo menos um
+            if (totalAtivos === 0) {
                 alert('Selecione pelo menos uma ação para começar sua jornada.');
+                return;
             }
+            
+            // 3. Pergunta o nome e o telefone
+            const nome = prompt("Que legal! Qual é o seu nome?");
+            if (!nome) return; // Se a pessoa cancelar, para por aqui
+            
+            let telefone = prompt("Digite seu número de WhatsApp com DDD (ex: 11999999999):");
+            if (!telefone) return;
+            
+            // Limpa o número (deixa só os dígitos se o usuário digitar traços ou parênteses)
+            telefone = telefone.replace(/\D/g, '');
+            
+            // 4. Mapeia e junta os textos das práticas escolhidas
+            let praticas = [];
+            cardsSelecionados.forEach(card => {
+                const textoPratica = card.querySelector('p').innerText;
+                praticas.push(`- ${textoPratica}`);
+            });
+            
+            // Junta as práticas quebrando linhas
+            const listaPraticas = praticas.join('\n');
+            
+            // 5. Monta a mensagem personalizada
+            const mensagem = `Olá, ${nome}, ficamos felizes por você se comprometer a praticar o seguinte durante essa semana:\n\n${listaPraticas}\n\n🌱 Juntos por um mundo mais sustentável!`;
+            
+            // 6. Codifica o texto para o padrão que a URL exige
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            
+            // 7. Monta o link do WhatsApp
+            const linkWhatsapp = `https://wa.me/55${telefone}?text=${mensagemCodificada}`;
+            
+            // 8. Avisa e redireciona
+            alert('Incrível! Você assumiu ' + totalAtivos + ' compromisso(s) sustentáveis hoje! Vamos te direcionar para o WhatsApp para confirmar. 🌱');
+            
+            window.open(linkWhatsapp, '_blank');
         }
     </script>
 </body>
