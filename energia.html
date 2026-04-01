@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economia de Energia - Comunidade Sustentável</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <section class="bg-hero relative h-[40vh] flex items-center justify-center">
+        <div class="relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
+                Economia de Energia
+            </h1>
+            <a href="index.html" class="inline-block mt-4 text-white hover:text-cyan-300 transition-colors">
+                ← Voltar para o início
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 -mt-10 relative z-20 pb-20">
+        <div class="bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-gray-100 max-w-4xl mx-auto">
+            
+            <p class="text-2xl md:text-3xl text-gray-700 leading-relaxed font-light italic border-l-4 border-cyan-500 pl-6">
+                "Desde a descoberta do fogo até os dias atuais, é impossível imaginar a evolução humana sem o recurso da energia."
+            </p>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                    <span class="text-3xl mb-2 block">⚡</span>
+                    <h4 class="font-bold text-red-800 uppercase text-xs tracking-widest mb-2">Poder do Hábito</h4>
+                    <p class="text-red-700 text-sm">Mudar a chave do chuveiro para a posição "Verão" economiza até 30% da energia no banho! (o equivalente a ~ R$ 35,00)</p>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                    <span class="text-3xl mb-2 block">💡</span>
+                    <h4 class="font-bold text-red-800 uppercase text-xs tracking-widest mb-2">Alerta Invisível</h4>
+                    <p class="text-red-700 text-sm">dispositivos em standby em uma casa comum pode representar cerca de 10% a 15% da conta de luz.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 space-y-8 text-gray-600 text-lg">
+                <h3 class="text-2xl font-bold text-gray-800">Como podemos agir?</h3>
+                <ul class="list-disc pl-6 space-y-4">
+                    <li><strong>standby: </strong> Ao sair de casa ou dormir, tire da tomada aparelhos que não precisam ficar ligados (Televisores, micro-ondas, cafeteiras).</li>
+                    <li><strong>Chuveiro:</strong> Mude a chave para a posição "Verão" em dias menos frios. Isso reduz o consumo de energia do banho em 30% instantaneamente, sem diminuir o tempo debaixo da água.</li>
+                    <li><strong>Lâmpadas LED:</strong> Substitua lâmpadas fluorescentes ou incandescentes por LED. Elas consomem 80% menos energia e duram até 25 vezes mais, pagando o investimento em poucos meses.</li>
+                    <li><strong>Luz Natural:</strong> Abra as cortinas! Parece óbvio, mas manter janelas limpas e cortinas abertas durante o dia evita que você acenda luzes desnecessárias, reduzindo o gasto com iluminação em até 10%.</li>
+                </ul>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                <button class="bg-cyan-600 text-white px-8 py-3 rounded-full font-bold hover:bg-cyan-700 transition-all shadow-lg">
+                    Ir para simulador de desperdício →
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="container mx-auto px-6 pb-20 max-w-4xl">
+    <div class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl border border-amber-900/20">
+        
+        <div class="relative z-10">
+            <h2 class="text-3xl font-bold mb-2">Simulador de Desperdício Elétrico ⚡</h2>
+            <p class="text-slate-400 mb-8">Selecione o que ficou ligado ou no standby para ver o prejuízo:</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                <div class="flex items-center justify-between bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <span class="text-sm font-bold">📺 TV no Standby</span>
+                    <input type="number" id="qtdTv" min="0" value="1" class="w-16 bg-slate-700 rounded p-1 text-center text-amber-400 font-bold">
+                </div>
+                <div class="flex items-center justify-between bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <span class="text-sm font-bold">🍿 Micro-ondas</span>
+                    <input type="number" id="qtdMicro" min="0" value="1" class="w-16 bg-slate-700 rounded p-1 text-center text-amber-400 font-bold">
+                </div>
+                <div class="flex items-center justify-between bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <span class="text-sm font-bold">💻 Computador</span>
+                    <input type="number" id="qtdPc" min="0" value="0" class="w-16 bg-slate-700 rounded p-1 text-center text-amber-400 font-bold">
+                </div>
+                <div class="flex items-center justify-between bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <span class="text-sm font-bold">💡 Lâmpada acesa (dia)</span>
+                    <input type="number" id="qtdLamp" min="0" value="0" class="w-16 bg-slate-700 rounded p-1 text-center text-amber-400 font-bold">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center">
+                    <p class="text-slate-400 text-xs uppercase font-bold mb-2">Consumo Mensal</p>
+                    <p class="text-3xl font-bold text-white"><span id="resKwh">0.0</span> <span class="text-sm">kWh</span></p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center border-b-4 border-b-amber-500">
+                    <p class="text-slate-400 text-xs uppercase font-bold mb-2">Prejuízo Estimado</p>
+                    <p class="text-3xl font-bold text-amber-400">R$ <span id="resReais">0.00</span></p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center">
+                    <p class="text-slate-400 text-xs uppercase font-bold mb-2">Equivale a</p>
+                    <p id="resComparativo" class="text-sm font-medium text-slate-300">Selecione aparelhos...</p>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-xs text-slate-500 italic">
+                *Cálculo aproximado: Standby (3W-5W), PC (20W idle), Lâmpada LED (10W). Tarifa média: R$ 0,95/kWh.
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const inputs = ['qtdTv', 'qtdMicro', 'qtdPc', 'qtdLamp'];
+    
+    function calcular() {
+        const tv = document.getElementById('qtdTv').value * 4; // 4W standby
+        const micro = document.getElementById('qtdMicro').value * 3; // 3W standby
+        const pc = document.getElementById('qtdPc').value * 15; // 15W standby/suspenso
+        const lamp = document.getElementById('qtdLamp').value * 10; // 10W ligada
+
+        const wattsTotais = tv + micro + pc + lamp;
+        const kwhMes = (wattsTotais * 24 * 30) / 1000;
+        const reais = kwhMes * 0.95;
+
+        document.getElementById('resKwh').innerText = kwhMes.toFixed(1);
+        document.getElementById('resReais').innerText = reais.toFixed(2);
+
+        // Comparativo de impacto
+        let comp = "";
+        if (reais <= 0) comp = "Tudo desligado! 🌱";
+        else if (reais < 10) comp = "Equivale a carregar 200 celulares 📱";
+        else if (reais < 30) comp = "Equivale a 20 ciclos de máquina de lavar 🧺";
+        else comp = "Equivale a 12 horas de chuveiro ligado 🚿";
+        
+        document.getElementById('resComparativo').innerText = comp;
+    }
+
+    inputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', calcular);
+    });
+
+    calcular();
+</script>

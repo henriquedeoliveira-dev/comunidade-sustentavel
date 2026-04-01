@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economia de Água - Comunidade Sustentável</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <section class="bg-hero relative h-[40vh] flex items-center justify-center">
+        <div class="relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
+                Economia de Água
+            </h1>
+            <a href="index.html" class="inline-block mt-4 text-white hover:text-cyan-300 transition-colors">
+                ← Voltar para o início
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 -mt-10 relative z-20 pb-20">
+        <div class="bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-gray-100 max-w-4xl mx-auto">
+            
+            <p class="text-2xl md:text-3xl text-gray-700 leading-relaxed font-light italic border-l-4 border-cyan-500 pl-6">
+                "Água é um recurso finito. Um pequeno vazamento de apenas 2mm pode desperdiçar o equivalente a 3200 litros de água (40 banhos por dia.)"
+            </p>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                    <span class="text-3xl mb-2 block">🚿</span>
+                    <h4 class="font-bold text-red-800 uppercase text-xs tracking-widest mb-2">Poder do Hábito</h4>
+                    <p class="text-red-700 text-sm">Reduzir seu banho em 5 minutos economiza até 60 litros de água!</p>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                    <span class="text-3xl mb-2 block">🚰</span>
+                    <h4 class="font-bold text-red-800 uppercase text-xs tracking-widest mb-2">Alerta Invisível</h4>
+                    <p class="text-red-700 text-sm">Uma torneira gotejando não é apenas um desperdício de recurso natural, mas também uma conta que pode "doer" no bolso.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 space-y-8 text-gray-600 text-lg">
+                <h3 class="text-2xl font-bold text-gray-800">Como podemos agir?</h3>
+                <ul class="list-disc pl-6 space-y-4">
+                    <li><strong>Vedação:</strong> Trocar a vedação de torneiras que não fecham direito é barato e resolve o problema em minutos (em média R$ 10,00).</li>
+                    <li><strong>Banhos mais rápidos:</strong> Reduzir o tempo de banho é a forma mais rápida de ver diferença. Se puder, feche o registro enquanto se ensaboa.</li>
+                    <li><strong>Arejadores:</strong> Instale aeradores nos bicos das torneiras. Eles misturam ar à água, mantendo a sensação de pressão, mas reduzindo o fluxo real em até 50%.</li>
+                    <li><strong>Uso da pia:</strong> Ao escovar os dentes ou lavar a louça, deixe as torneiras fechadas. Abra-as somente durante o enxágue.</li>
+                </ul>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                <button class="bg-cyan-600 text-white px-8 py-3 rounded-full font-bold hover:bg-cyan-700 transition-all shadow-lg">
+                    Ir para simulador de desperdício →
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="container mx-auto px-6 pb-20 max-w-4xl">
+    <div class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+        
+        <div class="relative z-10">
+            <h2 class="text-3xl font-bold mb-2">Simulador de Desperdício 💧</h2>
+            <p class="text-slate-400 mb-8">Arraste a barra para ver o impacto de pequenas gotas.</p>
+
+            <div class="mb-10">
+                <label for="gotas" class="block text-sm uppercase tracking-widest font-bold text-cyan-400 mb-4">
+                    Gotas por minuto: <span id="valorGotas" class="text-2xl ml-2">60</span>
+                </label>
+                <input type="range" id="gotas" min="1" max="500" value="60" 
+                    class="w-full h-3 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                    <p class="text-slate-400 text-xs uppercase font-bold">Em 1 Dia</p>
+                    <p class="text-2xl font-bold text-white"><span id="resDia">4.32</span> Litros</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                    <p class="text-slate-400 text-xs uppercase font-bold">Em 1 Semana</p>
+                    <p class="text-2xl font-bold text-cyan-400"><span id="resSemana">30.24</span> Litros</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border border-cyan-900/50 bg-gradient-to-br from-slate-800 to-cyan-900/20">
+                    <p class="text-cyan-400 text-xs uppercase font-bold">Equivale a</p>
+                    <p class="text-2xl font-bold text-white"><span id="resBanhos">0</span> Banhos*</p>
+                    <p class="text-[10px] text-slate-500 mt-1">por semana</p>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-xs text-slate-500 italic">
+                *Cálculo baseado em gotas de 0.05ml e banhos de 15 min (135L). O desperdício real pode variar conforme a pressão da água.
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const inputGotas = document.getElementById('gotas');
+    const displayGotas = document.getElementById('valorGotas');
+    const resDia = document.getElementById('resDia');
+    const resSemana = document.getElementById('resSemana');
+    const resBanhos = document.getElementById('resBanhos');
+
+    function calcular() {
+        const gotas = inputGotas.value;
+        displayGotas.innerText = gotas;
+
+        // Cálculo: gotas * 0.05ml = ml por minuto
+        const mlPorMinuto = gotas * 0.05;
+        
+        const litrosHora = (mlPorMinuto * 60) / 1000;
+        const litrosDia = litrosHora * 24;
+        const litrosSemana = litrosDia * 7;
+        
+        // Média de banho: 135 litros (15 min)
+        const banhosEquivalentes = litrosSemana / 135;
+
+        resDia.innerText = litrosDia.toFixed(2);
+        resSemana.innerText = litrosSemana.toFixed(2);
+        
+        // Se for menos de 1 banho, mostra decimal, se for mais, arredonda
+        resBanhos.innerText = banhosEquivalentes < 1 ? banhosEquivalentes.toFixed(1) : Math.round(banhosEquivalentes);
+    }
+
+    inputGotas.addEventListener('input', calcular);
+    calcular();
+</script>

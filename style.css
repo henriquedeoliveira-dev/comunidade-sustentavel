@@ -1,0 +1,24 @@
+.bg-hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Isso aqui cria o fundo com blur sem afetar as letras */
+.bg-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                      url('imagem\ de\ fundo\ site.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Ajuste o nível do blur aqui */
+    transform: scale(1.1); /* Evita bordas brancas causadas pelo blur */
+    z-index: 1;
+}
